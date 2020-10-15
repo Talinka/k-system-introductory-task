@@ -1,14 +1,10 @@
 import React from 'react';
+import UserStatus from '../types/UserStatus';
 
-export enum Status {
-  new,
-  proven,
-  VIP
-}
 
 type UserProps = {
   name: string,
-  status: Status,
+  status: UserStatus,
 }
 
 function User({ name, status}: UserProps) {

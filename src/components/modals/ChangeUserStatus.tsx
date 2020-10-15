@@ -16,37 +16,44 @@ import UserStatus from '../../types/UserStatus';
 type ChangeUserStatusProps = {
   user: User,
   open: boolean,
+  onSubmit: (newStatus: UserStatus | null) => void,
 };
 
-const statuses = {
-  new: UserStatus.New,
-  verified: UserStatus.Verified,
-  vip: UserStatus.Verified,
-};
+const statuses: Array<UserStatus> = [
+  UserStatus.New,
+  UserStatus.Verified,
+  UserStatus.VIP,
+];
 
-const ChangeUserStatus = ({ user, open }: ChangeUserStatusProps) => {
-  const { name, status } = user;
-  const [newStatus, setStatus] = useState(status.toString());
-  const handleClose = () => { };
+const ChangeUserStatus = ({ user, open, onSubmit }: ChangeUserStatusProps) => {
+  const { name, status: oldStatus } = user;
+  const [statusText, setStatusText] = useState(oldStatus.toString());
+  const handleSave = () => {
+    const newStatus = statuses.find((status) => status.toString() === statusText);
+    onSubmit(newStatus ?? null);
+  };
+  const handleCancel = () => onSubmit(null);
+
   const handleChange = (e: React.ChangeEvent<{}>, value: string) => {
-    setStatus(value);
+    setStatusText(value);
   };
 
   return (
-    <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+    <Dialog open={open} onClose={handleCancel} aria-labelledby="form-dialog-title">
       <DialogTitle id="form-dialog-title">Change user status</DialogTitle>
       <DialogContent>
         <DialogContentText>
           {`Select status for user ${name}:`}
         </DialogContentText>
-        <FormControl component={"fieldset" as "div"}>
-          <RadioGroup row aria-label="status" name="status" value={newStatus} onChange={handleChange}>
-            {Object.keys(statuses)
-              .map((key) => (
+        <FormControl>
+          <RadioGroup row aria-label="status" name="status" value={statusText} onChange={handleChange}>
+            {statuses
+              .map((status, i) => (
                 <FormControlLabel
-                  value={key}
+                  key={i}
+                  value={status.toString()}
                   control={<Radio />}
-                  label="New"
+                  label={status.toString()}
                 />
               ))
             }
@@ -54,10 +61,10 @@ const ChangeUserStatus = ({ user, open }: ChangeUserStatusProps) => {
         </FormControl>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={handleCancel} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={handleSave} color="primary">
           Save
         </Button>
       </DialogActions>

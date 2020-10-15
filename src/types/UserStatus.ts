@@ -1,6 +1,6 @@
 export enum UserStatus {
-  new,
-  verified,
+  New,
+  Verified,
   VIP
 }
 

@@ -12,6 +12,7 @@ import User from '../types/User';
 
 type UserProps = {
   user: User;
+  onClick: (user: User) => void;
 }
 
 const statusIcons = {
@@ -20,10 +21,14 @@ const statusIcons = {
   [UserStatus.VIP]: <VIPUserIcon />,
 }
 
-function UserItem({ user }: UserProps) {
+function UserItem({ user, onClick }: UserProps) {
   const { name, status } = user;
+  const clickHandle = () => {
+    onClick(user);
+  }
+
   return (
-    <ListItem button>
+    <ListItem button onClick={clickHandle}>
       <ListItemIcon>
         {statusIcons[status]}
       </ListItemIcon>

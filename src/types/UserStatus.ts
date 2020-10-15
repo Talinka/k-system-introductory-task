@@ -1,7 +1,7 @@
 export enum UserStatus {
-  New = "New",
-  Verified = "Verified",
-  VIP = "VIP",
+  New,
+  Verified,
+  VIP,
 };
 
 export default UserStatus;

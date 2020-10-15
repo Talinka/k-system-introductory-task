@@ -7,19 +7,21 @@ import ListItemText from '@material-ui/core/ListItemText';
 import NewUserIcon from '@material-ui/icons/FiberNewOutlined';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUserOutlined';
 import VIPUserIcon from '@material-ui/icons/EmojiEventsOutlined';
+// types
+import User from '../types/User';
 
 type UserProps = {
-  name: string,
-  status: UserStatus,
+  user: User;
 }
 
 const statusIcons = {
-  [UserStatus.new]: <NewUserIcon />,
-  [UserStatus.verified]: <VerifiedUserIcon />,
+  [UserStatus.New]: <NewUserIcon />,
+  [UserStatus.Verified]: <VerifiedUserIcon />,
   [UserStatus.VIP]: <VIPUserIcon />,
 }
 
-function User({ name, status }: UserProps) {
+function UserItem({ user }: UserProps) {
+  const { name, status } = user;
   return (
     <ListItem button>
       <ListItemIcon>
@@ -30,4 +32,4 @@ function User({ name, status }: UserProps) {
   );
 }
 
-export default User;
+export default UserItem;

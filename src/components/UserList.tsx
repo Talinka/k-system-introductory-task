@@ -12,7 +12,7 @@ type UserListProps = {
 const UserList = ({ users }: UserListProps) => {
   return (
     <List>
-      {users.map((user) => <UserItem user={user} />)}
+      {users.map((user) => <UserItem user={user} key={user.id} />)}
     </List>
   );
 }

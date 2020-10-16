@@ -4,7 +4,7 @@ import User from '../types/User';
 // Here suppose to be data request to remote server or database
 export default async (): Promise<User[]> => {
   try {
-    const response = await fetch('/users.json');
+    const response = await fetch(process.env.PUBLIC_URL + '/users.json');
     const data = await response.json();
     return data;
   }

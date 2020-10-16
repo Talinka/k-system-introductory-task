@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { changeUserStatus } from '../slices/usersSlice';
 
 import UserList from './UserList';
 import UserStatus from '../types/UserStatus';
@@ -14,9 +17,12 @@ const Main = ({ users }: MainProps) => {
   const [open, setOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(users[0]);
 
-  const changeStatusSubmit = (newStatus: UserStatus, isSaveChange: boolean) => {
+  const dispatch = useDispatch();
+
+  const changeStatusSubmit = (user: User, newStatus: UserStatus, isSaveChange: boolean) => {
     if (isSaveChange) {
       console.log(newStatus);
+      dispatch(changeUserStatus({ user, newStatus }));
     }
     setOpen(false);
   }
@@ -29,8 +35,13 @@ const Main = ({ users }: MainProps) => {
   return (
     <div>
       <UserList users={users} onClick={handleShowDialog} />
-      <ChangeUserStatusModal user={selectedUser} open={open} currentStatus={selectedUser.status} onSubmit={changeStatusSubmit}
-      />
+      {users.length > 0 &&
+        <ChangeUserStatusModal
+          user={selectedUser}
+          open={open}
+          currentStatus={selectedUser.status}
+          onSubmit={changeStatusSubmit}
+        />}
     </div>
   );
 }

@@ -15,7 +15,7 @@ type ChangeUserStatusProps = {
   user: User,
   open: boolean,
   currentStatus: UserStatus,
-  onSubmit: (newStatus: UserStatus, isChanged: boolean) => void,
+  onSubmit: (user: User, newStatus: UserStatus, isChanged: boolean) => void,
 };
 
 const ChangeUserStatus = ({ user, currentStatus, open, onSubmit }: ChangeUserStatusProps) => {
@@ -23,7 +23,7 @@ const ChangeUserStatus = ({ user, currentStatus, open, onSubmit }: ChangeUserSta
   const [selectedStatus, setStatus] = useState(currentStatus);
 
   const handleSubmit = (isSaveChange: boolean) => () => {
-    onSubmit(selectedStatus, isSaveChange);
+    onSubmit(user, selectedStatus, isSaveChange);
   };
 
   const handleStatusChange = (status: UserStatus) => {

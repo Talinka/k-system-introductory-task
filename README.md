@@ -2,7 +2,8 @@
 
 Web application, which shows list of users and allows to change user status.
 For creating the application was used create-react-app.
-For state managing it uses redux-toolkit
+For state managing it uses redux-toolkit.
+It's my first experience with TypeScript and Material-UI.
 
 ## Building The Code
 

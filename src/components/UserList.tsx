@@ -2,7 +2,7 @@ import React from 'react';
 import List from '@material-ui/core/List';
 // components
 import UserItem from './UserItem';
-//types
+// types
 import User from '../types/User';
 
 type UserListProps = {

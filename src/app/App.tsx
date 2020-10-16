@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+// components
 import Main from '../components/Main';
 
 import { RootState } from './rootReducer';

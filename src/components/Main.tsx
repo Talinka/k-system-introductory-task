@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-
+// slices
 import { changeUserStatus } from '../slices/usersSlice';
-
+// components
 import UserList from './UserList';
 import UserStatus from '../types/UserStatus';
 import ChangeUserStatusModal from './modals/ChangeUserStatus';
-
+// types
 import User from '../types/User';
 
 type MainProps = {
@@ -21,7 +21,6 @@ const Main = ({ users }: MainProps) => {
 
   const changeStatusSubmit = (user: User, newStatus: UserStatus, isSaveChange: boolean) => {
     if (isSaveChange) {
-      console.log(newStatus);
       dispatch(changeUserStatus({ user, newStatus }));
     }
     setOpen(false);

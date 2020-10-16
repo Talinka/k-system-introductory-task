@@ -28,7 +28,6 @@ const Main = ({ users }: MainProps) => {
 
   return (
     <div>
-      <h2>User list</h2>
       <UserList users={users} onClick={handleShowDialog} />
       <ChangeUserStatusModal user={selectedUser} open={open} currentStatus={selectedUser.status} onSubmit={changeStatusSubmit}
       />

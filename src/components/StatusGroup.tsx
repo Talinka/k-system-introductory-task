@@ -27,7 +27,10 @@ const StatusGroup = ({ status, onStatusChange }: StatusGroupProps) => {
 
   return (
     <FormControl>
-      <RadioGroup row aria-label="gender" name="gender1" value={selectedStatus.toString()} onChange={handleChange}>
+      <RadioGroup row aria-label="status" name="status"
+        value={selectedStatus.toString()}
+        onChange={handleChange}
+      >
         {statusLabels.map((status, i) => (
           <FormControlLabel key={i} value={i.toString()} control={<Radio />} label={status} />
         ))}

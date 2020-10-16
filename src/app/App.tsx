@@ -1,12 +1,27 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import CircularProgress from '@material-ui/core/CircularProgress';
 // components
 import Main from '../components/Main';
 
 import { RootState } from './rootReducer';
 import { fetchUsers } from '../slices/usersSlice';
+// styles
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles({
+  header: {
+    textAlign: 'center',
+    color: '#562',
+  },
+  root: {
+    margin: '2% 3%',
+  }
+});
 
 function App() {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
 
   const {
@@ -18,13 +33,13 @@ function App() {
   useEffect(() => {
     dispatch(fetchUsers);
   },
-  // when we have server api for change user state, we'll need dispatch in dependency list
-  // eslint-disable-next-line
-  []);
+    // when we have server api for change user state, we'll need dispatch in dependency list
+    // eslint-disable-next-line
+    []);
 
   if (error) {
     return (
-      <div>
+      <div className={classes.root}>
         <h1>Something went wrong...</h1>
         <div>{error}</div>
       </div>
@@ -32,12 +47,15 @@ function App() {
   }
 
   const renderLoading = () => (
-    <div>Loading...</div>
+    <>
+      <CircularProgress />
+      <div>Loading...</div>
+    </>
   )
 
   return (
-    <div>
-      <h2>User list</h2>
+    <div className={classes.root}>
+      <h2 className={classes.header}>User list</h2>
       {isLoading ? renderLoading() : <Main users={users} />}
     </div>
   );

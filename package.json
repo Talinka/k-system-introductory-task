@@ -21,7 +21,8 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
     "react-scripts": "3.4.3",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "yarn-audit-fix": "^3.2.10"
   },
   "scripts": {
     "start": "react-scripts start",
